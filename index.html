@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gangs of Los Santos</title>
+<style>
+*{box-sizing:border-box}
+html,body{height:100%;margin:0;font-family:Roboto,"Segoe UI",Arial,sans-serif;color:#222}
+#app{display:flex;height:100%}
+#side{position:relative;width:340px;flex:none;display:flex;flex-direction:column;background:#fff;border-right:1px solid #ddd;z-index:3}
+#head{background:#db4437;color:#fff;padding:14px 16px;font-size:20px;font-weight:500}
+#search{margin:12px;padding:10px 12px;border:1px solid #ccc;border-radius:6px;font-size:15px}
+#search:focus{outline:2px solid #db4437;border-color:transparent}
+#list{overflow-y:auto;flex:1;padding:0 8px 16px}
+.grp{font-weight:600;font-size:15px;margin:16px 8px 6px}
+.item{display:flex;align-items:center;gap:10px;padding:8px;border-radius:6px;cursor:pointer;font-size:15px}
+.item:hover,.item:focus-visible{background:#f2f2f2;outline:none}
+.item.on{background:#fdeceb}
+.dot{width:14px;height:14px;border-radius:3px;flex:none;border:1px solid rgba(0,0,0,.35)}
+.item.closed{opacity:.5;text-decoration:line-through}
+#none{padding:16px;color:#777;display:none}
+#detail{position:absolute;inset:0;background:#fff;display:none;flex-direction:column;overflow-y:auto;z-index:6}
+#detail .dimg{width:100%;height:170px;object-fit:cover;display:block;flex:none}
+#detail .dbar{background:#db4437;color:#fff;display:flex;align-items:center;gap:14px;padding:14px 16px;flex:none}
+#detail .dbar button{background:none;border:0;color:#fff;font-size:24px;line-height:1;padding:0 4px}
+#detail .dbar span{font-size:20px;font-weight:500;line-height:1.25}
+#detail .dbody{padding:20px 24px}
+#detail .dl{font-size:13px;color:#777;margin:0 0 4px}
+#detail .dv{font-size:15px;line-height:1.5;margin-bottom:22px;white-space:pre-wrap;word-break:break-word}
+#detail .dv a{color:#4285f4}
+#tools{border-top:1px solid #ddd;padding:10px 12px;display:flex;gap:8px}
+button{font:inherit;cursor:pointer}
+.btn{padding:8px 12px;border:1px solid #bbb;background:#fff;border-radius:6px}
+.btn:hover{background:#f2f2f2}
+.btn.pri{background:#db4437;border-color:#db4437;color:#fff}
+.btn.pri:hover{background:#c63a2e}
+.btn[disabled]{opacity:.5;cursor:default}
+#view{flex:1;position:relative;overflow:hidden;background:#cfd8dc;cursor:grab;touch-action:none}
+#view.drag{cursor:grabbing}
+#view.edit{cursor:crosshair}
+#world{position:absolute;left:0;top:0;transform-origin:0 0;will-change:transform}
+#world img{display:block;user-select:none;-webkit-user-drag:none}
+#svg{position:absolute;left:0;top:0}
+#svg polygon{fill:var(--c);fill-opacity:.5;stroke:var(--c);stroke-width:2;vector-effect:non-scaling-stroke;cursor:pointer;transition:fill-opacity .15s}
+#svg polygon:hover{fill-opacity:.68;stroke-width:3}
+#svg polygon.closed{fill-opacity:.2;stroke-dasharray:6 4}
+#svg polygon.sel{fill-opacity:.68;stroke:#fff;stroke-width:4}
+#svg text{font-family:Roboto,"Segoe UI",Arial,sans-serif;font-weight:500;fill:#fff;stroke:rgba(0,0,0,.7);stroke-width:.2em;paint-order:stroke;stroke-linejoin:round;text-anchor:middle;pointer-events:none;user-select:none}
+#view.edit #svg polygon{pointer-events:none}
+#pop{position:absolute;z-index:4;width:250px;background:#fff;border-radius:8px;box-shadow:0 4px 18px rgba(0,0,0,.35);padding:14px;display:none;transform:translate(-50%,calc(-100% - 14px))}
+#pop h3{margin:0 0 2px;font-size:17px}
+#pop .sub{color:#666;font-size:13px;margin-bottom:10px}
+#pop p{margin:0 0 10px;font-size:14px}
+#pop .x{position:absolute;right:8px;top:6px;border:0;background:none;font-size:20px;color:#888}
+#zoom{position:absolute;left:12px;bottom:12px;display:flex;flex-direction:column;gap:1px;z-index:2}
+#zoom button{width:38px;height:38px;font-size:22px;border:0;background:#fff;box-shadow:0 1px 4px rgba(0,0,0,.3)}
+#panel{max-height:calc(100% - 24px);overflow-y:auto;position:absolute;right:12px;top:12px;width:280px;background:#fff;border-radius:8px;box-shadow:0 4px 18px rgba(0,0,0,.35);padding:14px;z-index:5;display:none}
+#panel label{display:block;font-size:13px;margin:8px 0 3px;color:#555}
+#panel textarea{width:100%;padding:7px;border:1px solid #ccc;border-radius:5px;font:inherit;resize:vertical}
+#panel input,#panel select{width:100%;padding:7px;border:1px solid #ccc;border-radius:5px;font:inherit}
+#panel input[type=color]{padding:2px;height:34px}
+#panel .row{display:flex;gap:6px;margin-top:10px;flex-wrap:wrap}
+#hint{font-size:13px;color:#555;margin:0 0 4px}
+#toast{position:absolute;bottom:14px;left:50%;transform:translateX(-50%);background:#222;color:#fff;padding:8px 14px;border-radius:6px;font-size:14px;display:none;z-index:6}
+@media(max-width:700px){#app{flex-direction:column}#side{width:100%;height:42%}}
+@media(prefers-reduced-motion:reduce){#svg polygon{transition:none}}
+</style>
+</head>
+<body>
+<div id="app">
+  <aside id="side">
+    <div id="head">Gangs of Los Santos (2026)</div>
+    <input id="search" type="search" placeholder="Search gangs..." autocomplete="off" aria-label="Search gangs">
+    <div id="list"></div>
+    <div id="none">No gangs match your search.</div>
+    
+    <div id="detail"></div>
+  </aside>
+  <main id="view">
+    <div id="world"><img id="img" src="map.jpg" alt="Map of Los Santos"><svg id="svg"></svg></div>
+    <div id="pop"></div>
+    <div id="zoom"><button id="zin" aria-label="Zoom in">+</button><button id="zout" aria-label="Zoom out">&minus;</button></div>
+    <div id="toast"></div>
+  </main>
+</div>
+<script>
+const $=id=>document.getElementById(id), NS='http://www.w3.org/2000/svg';
+const view=$('view'), world=$('world'), svg=$('svg'), pop=$('pop');
+let data, W, H, sc=1, tx=0, ty=0, fitSc=1, selected=null, anim=null, editing=false, draft=[];
+
+fetch('gangs.json',{cache:'no-store'}).then(r=>r.json()).then(d=>{data=d; if($('img').complete&&$('img').naturalWidth) init(); else $('img').onload=init;})
+ .catch(()=>{$('list').innerHTML='<p style="padding:16px">Could not load gangs.json. Start the site with <b>python -m http.server</b> and open localhost:8000.</p>'});
+
+function init(){
+  const im=$('img'); W=im.naturalWidth; H=im.naturalHeight;
+  svg.setAttribute('width',W); svg.setAttribute('height',H); svg.setAttribute('viewBox',`0 0 ${W} ${H}`);
+  fitSc=Math.min(view.clientWidth/W, view.clientHeight/H); sc=fitSc; tx=(view.clientWidth-W*sc)/2; ty=(view.clientHeight-H*sc)/2;
+  drawPolys(); buildList(); render();
+}
+function labelSize(g){const b=bbox(g);return g.labelSize||Math.max(9,Math.min(18,Math.round((b.x1-b.x0)/7)))}
+function labelPos(g){if(g.labelPos)return g.labelPos;const b=bbox(g);return[(b.x0+b.x1)/2,(b.y0+b.y1)/2]}
+function wrapLabel(g,size){
+  const t=g.label||g.name; if(t.includes('|'))return t.split('|');
+  const b=bbox(g), maxc=Math.max(6,Math.floor((b.x1-b.x0)*1.1/(size*.55))), out=[]; let cur='';
+  t.split(' ').forEach(w=>{if(cur&&(cur+' '+w).length>maxc){out.push(cur);cur=w}else cur=cur?cur+' '+w:w}); out.push(cur); return out;
+}
+function renderLabels(){
+  const L=$('labels'); L.innerHTML='';
+  data.gangs.forEach(g=>{
+    const size=labelSize(g), pos=labelPos(g), lines=wrapLabel(g,size);
+    const t=document.createElementNS(NS,'text'); t.setAttribute('font-size',size); t.setAttribute('x',pos[0]); t.setAttribute('y',pos[1]-(lines.length-1)*size*.55);
+    lines.forEach((ln,i)=>{const s=document.createElementNS(NS,'tspan'); s.setAttribute('x',pos[0]); s.setAttribute('dy',i?size*1.1:size*.35); s.textContent=ln; t.appendChild(s)});
+    if(g.status==='closed') t.style.opacity=.6;
+    L.appendChild(t);
+  });
+}
+function styleGang(g){const p=svg.querySelector(`polygon[data-id="${g.id}"]`); if(!p)return; p.style.setProperty('--c',g.color); p.classList.toggle('closed',g.status==='closed')}
+function drawPolys(){
+  svg.innerHTML='';
+  data.gangs.forEach(g=>{
+    const p=document.createElementNS(NS,'polygon');
+    p.setAttribute('points',g.points.map(q=>q.join(',')).join(' ')); p.dataset.id=g.id;
+    p.addEventListener('click',()=>{ if(!moved) select(g.id,false); });
+    svg.appendChild(p); styleGang(g);
+  });
+  const l=document.createElementNS(NS,'g'); l.id='labels'; svg.appendChild(l);
+  const d=document.createElementNS(NS,'polyline'); d.id='draft'; d.setAttribute('fill','rgba(219,68,55,.25)'); d.setAttribute('stroke','#db4437'); d.setAttribute('stroke-width','3'); d.style.vectorEffect='non-scaling-stroke'; d.style.pointerEvents='none'; svg.appendChild(d);
+  const c=document.createElementNS(NS,'g'); c.id='dots'; svg.appendChild(c);
+  renderLabels();
+}
+function buildList(){
+  const q=$('search').value.trim().toLowerCase(), list=$('list'); list.innerHTML=''; let n=0;
+  data.regions.forEach(r=>{
+    const gs=data.gangs.filter(g=>g.region===r && g.name.toLowerCase().includes(q)); if(!gs.length) return;
+    const h=document.createElement('div'); h.className='grp'; h.textContent=r; list.appendChild(h);
+    gs.forEach(g=>{ n++;
+      const i=document.createElement('div'); i.className='item'+(g.status==='closed'?' closed':'')+(selected===g.id?' on':''); i.tabIndex=0; i.dataset.id=g.id;
+      i.innerHTML=`<span class="dot" style="background:${g.color}"></span><span></span>`; i.lastChild.textContent=g.name;
+      i.onclick=()=>select(g.id,true); i.onkeydown=e=>{if(e.key==='Enter')select(g.id,true)};
+      list.appendChild(i);
+    });
+  });
+  $('none').style.display=n?'none':'block';
+}
+function render(){
+  world.style.transform=`translate(${tx}px,${ty}px) scale(${sc})`;
+  if(selected!==null) placePop();
+}
+function bbox(g){const xs=g.points.map(p=>p[0]),ys=g.points.map(p=>p[1]);return{x0:Math.min(...xs),x1:Math.max(...xs),y0:Math.min(...ys),y1:Math.max(...ys)}}
+function select(id,fly){
+  selected=id; const g=data.gangs.find(x=>x.id===id);
+  svg.querySelectorAll('polygon').forEach(p=>p.classList.toggle('sel',+p.dataset.id===id));
+  document.querySelectorAll('.item').forEach(i=>i.classList.toggle('on',+i.dataset.id===id));
+  const link=g.forum?`<a class="btn pri" href="${encodeURI(g.forum)}" target="_blank" rel="noopener" style="text-decoration:none;display:inline-block">Open forum thread</a>`:`<button class="btn" disabled>No forum link yet</button>`;
+  pop.innerHTML=`<button class="x" aria-label="Close">&times;</button><h3></h3><div class="sub"></div>${g.notes?'<p></p>':''}${link}`;
+  pop.querySelector('h3').textContent=g.name; pop.querySelector('.sub').textContent=g.region+(g.status==='closed'?' (closed)':'');
+  if(g.notes) pop.querySelector('p').textContent=g.notes;
+  pop.querySelector('.x').onclick=deselect;
+  showDetail(g);
+  pop.style.display='block';
+  if(fly){ pop.style.display='none'; flyTo(g,()=>{ if(selected===id){pop.style.display='block';placePop();} }); } else placePop();
+}
+function deselect(){selected=null;hideDetail();pop.style.display='none';svg.querySelectorAll('.sel').forEach(p=>p.classList.remove('sel'));document.querySelectorAll('.item.on').forEach(i=>i.classList.remove('on'))}
+const hasDetails=g=>!!((g.description&&g.description.trim())||(g.image&&g.image.trim()));
+const hq=t=>t.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+const linkify=t=>hq(t).replace(/(https?:\/\/(?:(?!&quot;|&lt;|&gt;)\S)+)/g,u=>`<a href="${u}" target="_blank" rel="noopener">${u}</a>`);
+function hideDetail(){const d=$('detail'); d.style.display='none'; d.innerHTML=''}
+function showDetail(g){
+  const d=$('detail'); if(!hasDetails(g)){hideDetail();return}
+  d.innerHTML=`${g.image?'<img class="dimg" alt="">':''}<div class="dbar"><button aria-label="Back to list">&larr;</button><span></span></div><div class="dbody"><div class="dl">name</div><div class="dv" id="dname"></div>${g.description?'<div class="dl">description</div><div class="dv" id="ddesc"></div>':''}${g.forum?'<a class="btn pri" id="dforum" target="_blank" rel="noopener" style="text-decoration:none;display:inline-block">Open forum thread</a>':''}</div>`;
+  if(g.image){const im=d.querySelector('.dimg'); im.onerror=()=>im.remove(); im.src=g.image}
+  d.querySelector('.dbar span').textContent=g.name; $('dname').textContent=g.name;
+  if(g.description) $('ddesc').innerHTML=linkify(g.description);
+  if(g.forum) $('dforum').href=g.forum;
+  d.querySelector('.dbar button').onclick=deselect;
+  d.style.display='flex'; d.scrollTop=0;
+}
+function placePop(){
+  const g=data.gangs.find(x=>x.id===selected); if(!g) return; const b=bbox(g);
+  pop.style.left=(tx+(b.x0+b.x1)/2*sc)+'px'; pop.style.top=(ty+b.y0*sc)+'px';
+}
+function ease(t){return t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2}
+function flyTo(g,done){
+  const b=bbox(g), bw=b.x1-b.x0, bh=b.y1-b.y0;
+  const ts=Math.max(fitSc,Math.min(2.2,view.clientWidth*.22/bw,view.clientHeight*.22/bh));
+  const cx=(b.x0+b.x1)/2, cy=(b.y0+b.y1)/2;
+  const ttx=view.clientWidth/2-cx*ts, tty=view.clientHeight/2-cy*ts+30;
+  const s0=sc,x0=tx,y0=ty,t0=performance.now(),dur=matchMedia('(prefers-reduced-motion:reduce)').matches?0:1100;
+  cancelAnimationFrame(anim);
+  (function step(now){
+    const t=dur?Math.min(1,(now-t0)/dur):1,e=ease(t);
+    // interpolate scale in log space so the zoom feels even
+    sc=Math.exp(Math.log(s0)+(Math.log(ts)-Math.log(s0))*e); tx=x0+(ttx-x0)*e; ty=y0+(tty-y0)*e; render();
+    if(t<1) anim=requestAnimationFrame(step); else done&&done();
+  })(t0);
+}
+function zoomAt(f,px,py){
+  const ns=Math.min(5,Math.max(fitSc*.8,sc*f)); f=ns/sc;
+  tx=px-(px-tx)*f; ty=py-(py-ty)*f; sc=ns; render();
+}
+view.addEventListener('wheel',e=>{e.preventDefault();cancelAnimationFrame(anim);const r=view.getBoundingClientRect();zoomAt(Math.exp(-e.deltaY*.0015),e.clientX-r.left,e.clientY-r.top)},{passive:false});
+$('zin').onclick=()=>zoomAt(1.4,view.clientWidth/2,view.clientHeight/2);
+$('zout').onclick=()=>zoomAt(1/1.4,view.clientWidth/2,view.clientHeight/2);
+
+// drag to pan
+let down=null, moved=false;
+view.addEventListener('pointerdown',e=>{ if(e.target.closest('#pop,#zoom,#panel'))return; cancelAnimationFrame(anim); down={x:e.clientX,y:e.clientY,tx,ty}; moved=false; });
+window.addEventListener('pointermove',e=>{
+  if(!down)return; const dx=e.clientX-down.x, dy=e.clientY-down.y;
+  if(!moved&&Math.hypot(dx,dy)>5){moved=true;view.classList.add('drag');}
+  if(moved){tx=down.tx+dx;ty=down.ty+dy;render();}
+});
+window.addEventListener('pointerup',e=>{
+  if(!down)return; const wasMoved=moved; view.classList.remove('drag'); down=null;
+  if(!wasMoved && e.target.closest('#view') && !e.target.closest('#pop,#zoom,#panel')){
+    if(e.target.tagName!=='polygon') deselect();
+  }
+  setTimeout(()=>moved=false,0);
+});
+window.addEventListener('resize',()=>{if(data){fitSc=Math.min(view.clientWidth/W,view.clientHeight/H);render();}});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')deselect()});
+$('search').addEventListener('input',buildList);
+
+</script>
+</body>
+</html>

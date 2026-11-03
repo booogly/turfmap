@@ -1,0 +1,801 @@
+{
+ "regions": [
+  "Northeast, Southeast, & East Los Santos",
+  "Central & West Los Santos",
+  "South Los Santos"
+ ],
+ "gangs": [
+  {
+   "id": 27,
+   "points": [
+    [
+     1737,
+     1542
+    ],
+    [
+     1697,
+     1588
+    ],
+    [
+     1786,
+     1656
+    ],
+    [
+     1818,
+     1611
+    ],
+    [
+     1737,
+     1542
+    ]
+   ],
+   "name": "Avenue Hustler Crip",
+   "label": "Avenue Hustler Crip",
+   "labelSize": 15,
+   "region": "South Los Santos",
+   "forum": "https://forum.gta.world/en/topic/151004-avenue-hustler%C2%A0crip/",
+   "notes": "",
+   "color": "#4caf50",
+   "status": "active"
+  },
+  {
+   "id": 28,
+   "points": [
+    [
+     1016,
+     1313
+    ],
+    [
+     1037,
+     1347
+    ],
+    [
+     1066,
+     1387
+    ],
+    [
+     1088,
+     1418
+    ],
+    [
+     1096,
+     1433
+    ],
+    [
+     1096,
+     1448
+    ],
+    [
+     1086,
+     1468
+    ],
+    [
+     1047,
+     1507
+    ],
+    [
+     975,
+     1400
+    ],
+    [
+     1013,
+     1372
+    ],
+    [
+     985,
+     1333
+    ],
+    [
+     1016,
+     1314
+    ]
+   ],
+   "name": "W/S Terror Town 13",
+   "label": "W/S Terror Town 13",
+   "labelSize": 22,
+   "region": "Central & West Los Santos",
+   "forum": "https://forum.gta.world/en/topic/81709-ws-terror-town-13/",
+   "notes": "",
+   "color": "#777777",
+   "status": "active",
+   "image": "",
+   "description": "Also known as TT13, Terror Town, or Beachside Terror, the gang is considered one of the most notorious Mexican-American gangs in Vespucci. Its main rivalries include PEN1 (Public Enemy No. 1), Asian Boyz (ABZ), School Yard Crips, and Naughty Nasty Crips. The gang developed a particularly hostile reputation toward Crip-affiliated sets following years of territorial disputes and retaliatory violence. Its alleged involvement in a mass shooting targeting ABZ members further cemented its notoriety, although no official charges were brought. As a Sureño-affiliated gang under the Mexican Mafia, Terror Town 13 maintains its identity through its Vespucci roots, longstanding neighborhood presence, and generational history."
+  },
+  {
+   "id": 29,
+   "points": [
+    [
+     2391,
+     502
+    ],
+    [
+     2425,
+     524
+    ],
+    [
+     2399,
+     567
+    ],
+    [
+     2364,
+     544
+    ],
+    [
+     2391,
+     502
+    ]
+   ],
+   "name": "E/S Pinoy Rifa 13",
+   "label": "E/S Pinoy Rifa 13",
+   "labelSize": 14,
+   "region": "Northeast, Southeast, & East Los Santos",
+   "forum": "https://forum.gta.world/en/topic/125614-es-pinoy-rifa-13/",
+   "notes": "",
+   "color": "#777777",
+   "status": "active"
+  },
+  {
+   "id": 30,
+   "points": [
+    [
+     1725,
+     1361
+    ],
+    [
+     1773,
+     1405
+    ],
+    [
+     1748,
+     1434
+    ],
+    [
+     1697,
+     1392
+    ],
+    [
+     1725,
+     1361
+    ]
+   ],
+   "name": "Crab Murda Gang",
+   "label": "",
+   "labelSize": 14,
+   "region": "South Los Santos",
+   "forum": "https://forum.gta.world/en/topic/164444-crab-murda-gang/",
+   "notes": "",
+   "color": "#c92222",
+   "status": "active"
+  },
+  {
+   "id": 31,
+   "points": [
+    [
+     2013,
+     1551
+    ],
+    [
+     1961,
+     1613
+    ],
+    [
+     2005,
+     1650
+    ],
+    [
+     2062,
+     1593
+    ],
+    [
+     2013,
+     1551
+    ]
+   ],
+   "name": "S/S Atlantic Carson Crip",
+   "label": "",
+   "labelSize": 14,
+   "region": "South Los Santos",
+   "forum": "https://forum.gta.world/en/topic/163265-atlantic-dont-panicc/",
+   "notes": "",
+   "color": "#6b9aff",
+   "status": "active"
+  },
+  {
+   "id": 32,
+   "points": [
+    [
+     2017,
+     1214
+    ],
+    [
+     2004,
+     1203
+    ],
+    [
+     1922,
+     1204
+    ],
+    [
+     1921,
+     1227
+    ],
+    [
+     1918,
+     1239
+    ],
+    [
+     1959,
+     1240
+    ],
+    [
+     1979,
+     1244
+    ],
+    [
+     1990,
+     1250
+    ]
+   ],
+   "name": "Gunna Gang Crips",
+   "label": "",
+   "labelSize": 14,
+   "region": "South Los Santos",
+   "forum": "https://forum.gta.world/en/topic/165114-gunna-gang-crips/",
+   "notes": "",
+   "color": "#3db0e1",
+   "status": "active"
+  },
+  {
+   "id": 33,
+   "points": [
+    [
+     1710,
+     1428
+    ],
+    [
+     1662,
+     1487
+    ],
+    [
+     1653,
+     1489
+    ],
+    [
+     1653,
+     1496
+    ],
+    [
+     1678,
+     1517
+    ],
+    [
+     1735,
+     1448
+    ]
+   ],
+   "name": "1e11um5 Neighborhood Crips",
+   "label": "",
+   "labelSize": 9,
+   "region": "South Los Santos",
+   "forum": "https://forum.gta.world/en/topic/164615-one-eleven-five-gang/",
+   "notes": "",
+   "color": "#a4bdf4",
+   "status": "active"
+  },
+  {
+   "id": 34,
+   "points": [
+    [
+     2495,
+     1457
+    ],
+    [
+     2606,
+     1401
+    ],
+    [
+     2616,
+     1425
+    ],
+    [
+     2634,
+     1450
+    ],
+    [
+     2644,
+     1463
+    ],
+    [
+     2673,
+     1505
+    ],
+    [
+     2645,
+     1512
+    ],
+    [
+     2612,
+     1525
+    ],
+    [
+     2566,
+     1546
+    ],
+    [
+     2559,
+     1546
+    ],
+    [
+     2544,
+     1520
+    ],
+    [
+     2537,
+     1506
+    ],
+    [
+     2518,
+     1513
+    ]
+   ],
+   "name": "97 East Coast Crips",
+   "label": "",
+   "labelSize": 21,
+   "region": "Northeast, Southeast, & East Los Santos",
+   "forum": "https://forum.gta.world/en/topic/164616-green-meadows-district/",
+   "notes": "",
+   "color": "#9ebdff",
+   "status": "active"
+  },
+  {
+   "id": 35,
+   "points": [
+    [
+     1864,
+     1584
+    ],
+    [
+     1872,
+     1592
+    ],
+    [
+     1884,
+     1611
+    ],
+    [
+     1914,
+     1632
+    ],
+    [
+     1870,
+     1685
+    ],
+    [
+     1817,
+     1640
+    ]
+   ],
+   "name": "4 Side Crips",
+   "label": "",
+   "labelSize": 19,
+   "region": "South Los Santos",
+   "forum": "https://forum.gta.world/en/topic/164247-4-side-crips/",
+   "notes": "",
+   "color": "#80a8ff",
+   "status": "active"
+  },
+  {
+   "id": 36,
+   "points": [
+    [
+     1704,
+     1422
+    ],
+    [
+     1653,
+     1484
+    ],
+    [
+     1637,
+     1499
+    ],
+    [
+     1613,
+     1518
+    ],
+    [
+     1609,
+     1516
+    ],
+    [
+     1610,
+     1430
+    ],
+    [
+     1653,
+     1380
+    ]
+   ],
+   "name": "Rollin’ 40 Neighborhood Crips",
+   "label": "",
+   "labelSize": 14,
+   "region": "South Los Santos",
+   "forum": "https://forum.gta.world/en/topic/163467-westside-glove-gang/",
+   "notes": "",
+   "color": "#a4bdf4",
+   "status": "active"
+  },
+  {
+   "id": 37,
+   "points": [
+    [
+     954,
+     1298
+    ],
+    [
+     1003,
+     1373
+    ],
+    [
+     972,
+     1397
+    ],
+    [
+     915,
+     1313
+    ]
+   ],
+   "name": "Varrio 5th & Magellan",
+   "label": "",
+   "labelSize": 14,
+   "region": "Central & West Los Santos",
+   "forum": "https://forum.gta.world/en/topic/157368-varrio-5th-magellan/",
+   "notes": "",
+   "color": "#5d0e0e",
+   "status": "active"
+  },
+  {
+   "id": 38,
+   "points": [
+    [
+     1991,
+     1386
+    ],
+    [
+     2073,
+     1338
+    ],
+    [
+     2078,
+     1340
+    ],
+    [
+     2106,
+     1340
+    ],
+    [
+     2099,
+     1376
+    ],
+    [
+     2105,
+     1391
+    ],
+    [
+     2088,
+     1411
+    ],
+    [
+     2079,
+     1435
+    ],
+    [
+     2067,
+     1451
+    ]
+   ],
+   "name": "Westside Fruit Town Brims",
+   "label": "",
+   "labelSize": 14,
+   "region": "South Los Santos",
+   "forum": "https://forum.gta.world/en/topic/163953-infamous-gangster-brims/",
+   "notes": "",
+   "color": "#e66565",
+   "status": "active",
+   "image": "",
+   "description": ""
+  },
+  {
+   "id": 39,
+   "points": [
+    [
+     2075,
+     1478
+    ],
+    [
+     2133,
+     1522
+    ],
+    [
+     2119,
+     1555
+    ],
+    [
+     2118,
+     1584
+    ],
+    [
+     2106,
+     1602
+    ],
+    [
+     2096,
+     1607
+    ],
+    [
+     2089,
+     1596
+    ],
+    [
+     2082,
+     1591
+    ],
+    [
+     2023,
+     1541
+    ]
+   ],
+   "name": "Eastside 230's",
+   "label": "",
+   "labelSize": 15,
+   "region": "South Los Santos",
+   "forum": "https://forum.gta.world/en/topic/163408-eastside-230s/",
+   "notes": "",
+   "color": "#e66565",
+   "status": "active"
+  },
+  {
+   "id": 40,
+   "points": [
+    [
+     1055,
+     1357
+    ],
+    [
+     1076,
+     1388
+    ],
+    [
+     1110,
+     1367
+    ],
+    [
+     1095,
+     1338
+    ]
+   ],
+   "name": "Santos Boys 13",
+   "label": "",
+   "labelSize": 14,
+   "region": "Central & West Los Santos",
+   "forum": "https://forum.gta.world/en/topic/163118-santos-boys-13/",
+   "notes": "",
+   "color": "#777777",
+   "status": "active"
+  },
+  {
+   "id": 41,
+   "points": [
+    [
+     1969,
+     1516
+    ],
+    [
+     1954,
+     1540
+    ],
+    [
+     1943,
+     1548
+    ],
+    [
+     1920,
+     1578
+    ],
+    [
+     1943,
+     1598
+    ],
+    [
+     1996,
+     1537
+    ]
+   ],
+   "name": "Westside Dulow Downs",
+   "label": "",
+   "labelSize": 9,
+   "region": "South Los Santos",
+   "forum": "https://forum.gta.world/en/topic/164527-westside-dulow-downs/",
+   "notes": "",
+   "color": "#ff9633",
+   "status": "active"
+  },
+  {
+   "id": 42,
+   "points": [
+    [
+     1919,
+     1473
+    ],
+    [
+     1897,
+     1497
+    ],
+    [
+     1875,
+     1483
+    ],
+    [
+     1860,
+     1485
+    ],
+    [
+     1839,
+     1511
+    ],
+    [
+     1916,
+     1574
+    ],
+    [
+     1939,
+     1544
+    ],
+    [
+     1950,
+     1537
+    ],
+    [
+     1966,
+     1513
+    ]
+   ],
+   "name": "74 Criminal Gang",
+   "label": "",
+   "labelSize": 13,
+   "region": "South Los Santos",
+   "forum": "https://forum.gta.world/en/topic/163240-westside-bay-bayz/",
+   "notes": "",
+   "color": "#ff9633",
+   "status": "active"
+  },
+  {
+   "id": 43,
+   "points": [
+    [
+     727,
+     616
+    ],
+    [
+     639,
+     731
+    ],
+    [
+     623,
+     716
+    ],
+    [
+     615,
+     689
+    ],
+    [
+     651,
+     638
+    ],
+    [
+     682,
+     616
+    ],
+    [
+     703,
+     593
+    ]
+   ],
+   "name": "W/S Grim Side Gangster Bloods",
+   "label": "",
+   "labelSize": 14,
+   "region": "Central & West Los Santos",
+   "forum": "https://forum.gta.world/en/topic/165120-ws-grim-side-gangster-bloods/",
+   "notes": "",
+   "color": "#c92222",
+   "status": "active"
+  },
+  {
+   "id": 44,
+   "points": [
+    [
+     1797,
+     1501
+    ],
+    [
+     1732,
+     1528
+    ],
+    [
+     1822,
+     1608
+    ],
+    [
+     1865,
+     1556
+    ]
+   ],
+   "name": "W/S Hell Gang",
+   "label": "",
+   "labelSize": 16,
+   "region": "South Los Santos",
+   "forum": "https://forum.gta.world/en/topic/159642-ws-hell-gang/",
+   "notes": "",
+   "color": "#6d80df",
+   "status": "active"
+  },
+  {
+   "id": 45,
+   "points": [
+    [
+     1989,
+     1661
+    ],
+    [
+     1947,
+     1712
+    ],
+    [
+     1908,
+     1678
+    ],
+    [
+     1949,
+     1628
+    ]
+   ],
+   "name": "Q102 James Towne Ave Crips",
+   "label": "",
+   "labelSize": 12,
+   "region": "South Los Santos",
+   "forum": "https://forum.gta.world/en/topic/163219-q102-james-towne-ave-crips/",
+   "notes": "",
+   "color": "#b3cbff",
+   "status": "active"
+  },
+  {
+   "id": 46,
+   "points": [
+    [
+     1215,
+     1062
+    ],
+    [
+     1247,
+     1120
+    ],
+    [
+     1201,
+     1146
+    ],
+    [
+     1171,
+     1089
+    ]
+   ],
+   "name": "W/S Rockford Street 13",
+   "label": "",
+   "labelSize": 14,
+   "region": "Central & West Los Santos",
+   "forum": "https://forum.gta.world/en/topic/163540-ws-rockford-street-13/",
+   "notes": "",
+   "color": "#777777",
+   "status": "active"
+  }
+ ]
+}
